@@ -4,53 +4,33 @@ The public website for **Tanorama of Falmouth**, 365 Main St, Falmouth, MA 02540
 
 Plain HTML, CSS, and a small script. There's no build step. GitHub Pages serves the `main` branch as-is.
 
-## Updating hours, prices, reviews, booking, and social links
+## Editing the site (for Scott)
 
-All editable content lives in **`data.js`**. Open it on GitHub, click the pencil icon, fill in the fields, and commit. The live site updates in a minute or two.
+Go to **https://platinum00001.github.io/tanorama-falmouth/admin/**, type the password, change what you want, and tap **Save changes**. Photos save as soon as you upload or remove them. The editor page isn't linked from the public site and is hidden from search engines.
 
-Empty fields are handled for you:
+Empty items are handled for you:
 
-| Field | When empty, the site shows |
+| Item | When empty, the site shows |
 |---|---|
-| `bookingUrl` | Every "Book" button calls the salon |
-| `email`, `instagram`, `facebook` | Those buttons are hidden |
-| `hours` | "Call (508) 495-9905 for today's hours." |
-| `services` | "Call (508) 495-9905 for current services and pricing." |
-| `reviews` | The board lists what reviewers mention (island interior, private rooms, warm desk) |
+| Booking link | Every "Book" button calls the salon |
+| Email, Instagram, Facebook | Those buttons are hidden |
+| Hours | "Call (508) 495-9905 for today's hours." |
+| Services | "Call (508) 495-9905 for current services and pricing." |
+| Reviews | The board lists what reviewers mention |
+| Photos | The sun-and-waves artwork (gallery hidden) |
 
-### Example
+## How it works
 
-```js
-bookingUrl: "https://your-booking-page.example",
-email: "you@example.com",
-instagram: "https://www.instagram.com/yourhandle",
-facebook: "https://www.facebook.com/yourpage",
-
-hours: [
-  { days: "Monday – Friday", hours: "9:00 AM – 8:00 PM" },
-  { days: "Saturday – Sunday", hours: "10:00 AM – 5:00 PM" }
-],
-
-services: [
-  { group: "Tanning Beds", items: [
-    { name: "Single Session", price: "$00" },
-    { name: "Monthly Unlimited", price: "$00", note: "Optional short detail" }
-  ]}
-],
-
-reviews: [
-  { quote: "Paste the review word for word.", author: "First name L.", source: "Google" }
-]
-```
-
-(The values above are examples only. Use the salon's real hours and prices.)
-
-Keep the quotes, commas, and brackets as shown. Each entry ends with a comma except the last one in a list.
+- Content is stored in Supabase (project `james-sites`, table `tanorama_site_content`, photos in the `tanorama-images` bucket).
+- The public page loads that content with the publishable key, which is meant to be public. Database rules let anyone read and only the single Tanorama editor account write.
+- If Supabase can't be reached, the page falls back to the backup content in **`data.js`**.
+- `data.js` is also where the editor's starting content came from. Editing it changes only the backup, not what's live.
 
 ## Files
 
 - `index.html`: page structure and the facts that don't change
-- `data.js`: the content you edit
-- `app.js`: puts `data.js` content on the page
+- `data.js`: backup content and Supabase settings (no secret keys)
+- `admin/`: the password-protected editor
+- `app.js`: loads live content (or the backup) onto the page
 - `styles.css`: design
 - `og-image.png`: preview image used when the link is shared

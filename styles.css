@@ -229,3 +229,18 @@ address { font-style: normal; font-family: var(--serif); font-size: 1.6rem; colo
 .facts { grid-template-columns: 1.4fr 1fr 1fr; }
 .facts strong { font-size: clamp(1.3rem, 4.2vw, 1.9rem); }
 .footer-social:empty, .footer-social:not(:has(a:not([hidden]))) { display: none; }
+
+/* photo slots (shown only when a photo is uploaded) */
+.hero-photo { margin: 0; position: relative; border-radius: 28px 28px 0 0; overflow: hidden; aspect-ratio: 4 / 3; align-self: end; box-shadow: 0 30px 60px -30px rgba(20,40,75,.45); }
+.hero-photo img { width: 100%; height: 100%; object-fit: cover; }
+.about-photo { margin: 2rem 0 0; border-radius: var(--radius); overflow: hidden; aspect-ratio: 4 / 3; }
+.about-photo img { width: 100%; height: 100%; object-fit: cover; }
+.gallery { padding: 4.5rem 0; background: var(--linen-2); }
+.gallery-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: .75rem; margin-top: 1.5rem; }
+.gallery-item { margin: 0; border-radius: 14px; overflow: hidden; aspect-ratio: 1; background: #fff; }
+.gallery-item img { width: 100%; height: 100%; object-fit: cover; }
+@media (min-width: 960px) {
+  .hero-photo { aspect-ratio: auto; height: 520px; }
+  .gallery-grid { grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+  .gallery { padding: 6rem 0; }
+}

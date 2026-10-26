@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Tanorama: Site Editor</title>
+<meta name="theme-color" content="#14284B">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300..600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="admin.css">
+</head>
+<body>
+
+<!-- Password screen -->
+<main id="login-view" class="login" hidden>
+  <div class="login-card">
+    <p class="brand"><span>Tanorama</span> <small>Site editor</small></p>
+    <h1>Welcome back, Scott.</h1>
+    <form id="login-form" autocomplete="on">
+      <label for="password">Password</label>
+      <input id="password" name="password" type="password" autocomplete="current-password" required autofocus>
+      <button class="btn btn-cedar" type="submit" id="login-btn">Log in</button>
+      <p class="error" id="login-error" role="alert" hidden></p>
+    </form>
+    <p class="small"><a href="../">Back to the website</a></p>
+  </div>
+</main>
+
+<!-- Editor -->
+<div id="editor-view" hidden>
+  <header class="topbar">
+    <p class="brand"><span>Tanorama</span> <small>Site editor</small></p>
+    <nav class="top-actions">
+      <a class="btn btn-ghost" href="../" target="_blank" rel="noopener">View site</a>
+      <button class="btn btn-ghost" type="button" id="logout-btn">Log out</button>
+    </nav>
+  </header>
+
+  <main class="editor">
+    <section class="help">
+      <h1>Edit your website</h1>
+      <ol>
+        <li>Change any box below. Leave a box empty to hide that item. If hours or prices are empty, the site asks people to call.</li>
+        <li>Tap <strong>Save changes</strong> at the bottom. The website updates right away. Refresh it to see.</li>
+        <li><strong>Photos</strong> save as soon as you upload or remove them.</li>
+      </ol>
+      <p class="small">Tip: only put facts on the site that are true today: real prices, real hours, and reviews copied word for word.</p>
+    </section>
+    <form id="editor-form" novalidate></form>
+  </main>
+
+  <div class="savebar">
+    <p id="save-status" role="status" aria-live="polite">All changes saved.</p>
+    <button class="btn btn-cedar" type="button" id="save-btn">Save changes</button>
+  </div>
+</div>
+
+<p id="boot" class="boot">Loading…</p>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.118.0/dist/umd/supabase.js" integrity="sha384-TcHRA3zBbn+Lexh5n+Oil4guNPOS3rjNDpGRAN46u/s/mB2IZ50ceC6TYDU2yvgK" crossorigin="anonymous"></script>
+<script src="../data.js"></script>
+<script src="admin.js"></script>
+</body>
+</html>
